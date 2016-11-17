@@ -5,3 +5,11 @@ variable "aws_s3_bucket_name" {
 variable "aws_s3_environment" {
   description = "Name of the aws s3 bucket environment"
 }
+
+variable "region" {
+  description = "Name of the aws s3 bucket region"
+}
+
+# variable "domain" {
+#   description = "domain"
+# }
