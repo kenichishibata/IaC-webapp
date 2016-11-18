@@ -10,6 +10,6 @@ variable "region" {
   description = "Name of the aws s3 bucket region"
 }
 
-# variable "domain" {
-#   description = "domain"
-# }
+variable "acm_certificate_arn" {
+  description = "value of the aws certificate arn"
+}
