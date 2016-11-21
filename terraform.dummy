@@ -1,8 +1,12 @@
 /* AWS
 Provides a S3 bucket resource.
 */
-
 aws_s3_bucket_name=""
-aws_s3_environment=""
 domain=""
 acm_certificate_arn="" #use only cert available in us-east-1
+pre_tag = "pre"        /* Pre-tag to be attached to AWS resources for identification */
+post_tag = "terra"
+env_tag=""             /*Environment tag*/
+route53_domain_name="" /* base domain name */
+region="ap-northeast-1"
+cdn_boolean="0"

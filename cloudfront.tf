@@ -1,12 +1,14 @@
 resource "aws_cloudfront_distribution" "s3_distribution" {
   enabled = true
-  aliases = ["testken.uniqlo.cloud"]
   default_root_object = "index.html"
+  price_class = "PriceClass_200"
+  aliases = ["${var.pre_tag}-cdn-${var.aws_s3_bucket_name}"]
+  count = "${var.cdn_boolean}"
 
   "origin" {
 
-    origin_id = "${var.aws_s3_bucket_name}.${aws_s3_bucket.website_bucket.website_domain}"
-    domain_name = "${var.aws_s3_bucket_name}.${aws_s3_bucket.website_bucket.website_domain}"
+    origin_id = "origin-bucket-${aws_s3_bucket.website_bucket.id}"
+    domain_name = "${aws_s3_bucket.website_bucket.website_endpoint}"
     custom_origin_config {
       origin_protocol_policy = "http-only"
       http_port = "80"
@@ -28,21 +30,24 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     min_ttl = "0"
     default_ttl = "300" //3600
     max_ttl = "1200" //86400
-    target_origin_id = "${var.aws_s3_bucket_name}.${aws_s3_bucket.website_bucket.website_domain}"
+    target_origin_id = "origin-bucket-${aws_s3_bucket.website_bucket.id}"
     # // This redirects any HTTP request to HTTPS. Security first!
     viewer_protocol_policy = "allow-all"
-    # compress = true
   }
   "restrictions" {
     "geo_restriction" {
       restriction_type = "none"
     }
   }
-   "viewer_certificate" {
+  "viewer_certificate" {
      acm_certificate_arn = "${var.acm_certificate_arn}"
      ssl_support_method = "sni-only"
      minimum_protocol_version = "TLSv1"
-   }
-
+  }
+  "tags" {
+    "Environment" = "${var.env_tag}"
+    "Pre Tag" = "${var.pre_tag}"
+    "Post Tag" = "${var.post_tag}"
+  }
 
 }
