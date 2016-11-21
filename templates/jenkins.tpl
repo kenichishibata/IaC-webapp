@@ -39,7 +39,7 @@
     "JENKINS_MESOS_MASTER": "zk://leader.mesos:2181/mesos",
     "JENKINS_AGENT_USER": "root",
     "JENKINS_OPTS": "",
-    "JENKINS_FRAMEWORK_NAME": "/jenkins-${pre_tag}"
+    "JENKINS_FRAMEWORK_NAME": "jenkins-${pre_tag}"
   },
   "healthChecks": [
     {
@@ -58,11 +58,11 @@
     "DCOS_SERVICE_SCHEME": "http",
     "DCOS_PACKAGE_SOURCE": "https://universe.mesosphere.com/repo-1.7",
     "DCOS_PACKAGE_REGISTRY_VERSION": "2.0",
-    "DCOS_SERVICE_NAME": "/jenkins-${pre_tag}",
+    "DCOS_SERVICE_NAME": "jenkins-${pre_tag}",
     "DCOS_PACKAGE_FRAMEWORK_NAME": "jenkins-${pre_tag}",
     "DCOS_SERVICE_PORT_INDEX": "0",
     "DCOS_PACKAGE_VERSION": "2.0.1-2.7.4",
-    "DCOS_PACKAGE_NAME": "jenkins-${pre_tag}",
+    "DCOS_PACKAGE_NAME": "jenkins",
     "MARATHON_SINGLE_INSTANCE_APP": "true",
     "DCOS_PACKAGE_IS_FRAMEWORK": "true",
     "HAPROXY_GROUP": "external"
