@@ -65,7 +65,21 @@ resource "aws_cloudfront_distribution" "jenkins_distribution" {
 		}
   }
 
-
+  "default_cache_behavior" {
+    allowed_methods = ["GET", "HEAD", "DELETE", "OPTIONS", "PATCH", "POST", "PUT"]
+    cached_methods = ["GET", "HEAD"]
+    "forwarded_values" {
+      query_string = false
+      cookies {
+        forward = "none"
+      }
+    }
+    min_ttl = "0"
+    default_ttl = "0"
+    max_ttl = "0" // no caching
+    target_origin_id = "origin-${var.dcos_public_url}/service/jenkins-${pre_tag}"
+    viewer_protocol_policy = "allow-all"
+  }
   "restrictions" {
     "geo_restriction" {
       restriction_type = "none"
