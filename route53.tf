@@ -17,7 +17,6 @@ resource "aws_route53_record" "cname_record" {
 	zone_id = "${var.hosted_zone_id}"
 	name = "${var.pre_tag}.${var.route53_domain_name}"
 	type = "CNAME"
-	count = "${var.cdn_boolean}"
 	ttl = "60"
 	records = ["${aws_cloudfront_distribution.s3_distribution.domain_name}"]
 }
