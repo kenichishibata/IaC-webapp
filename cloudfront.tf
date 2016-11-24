@@ -54,7 +54,7 @@ resource "aws_cloudfront_distribution" "jenkins_distribution" {
   count = "${var.cdn_boolean}"
 
   "origin" {
-    origin_id = "origin-${var.dcos_public_url}/service/jenkins-${pre_tag}"
+    origin_id = "origin-${var.dcos_public_url}"
     domain_name = "${var.dcos_public_url}"
 		origin_path = "/service/jenkins-${pre_tag}"
 		custom_origin_config {
