@@ -55,3 +55,8 @@ variable "agent_ip" {
   // Temporary solution
   description = "Agent ip"
 }
+
+variable "protocol_policy" {
+	description = "protocol policy for cloudfront cdn"
+	default = "allow-all"
+}

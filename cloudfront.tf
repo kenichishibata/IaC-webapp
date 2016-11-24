@@ -31,8 +31,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     default_ttl = "300" //3600
     max_ttl = "1200" //86400
     target_origin_id = "origin-bucket-${aws_s3_bucket.website_bucket.id}"
-    # // This redirects any HTTP request to HTTPS. Security first!
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "${var.protocol_policy}"
   }
   "restrictions" {
     "geo_restriction" {
@@ -49,5 +48,4 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     "Pre Tag" = "${var.pre_tag}"
     "Post Tag" = "${var.post_tag}"
   }
-
 }
