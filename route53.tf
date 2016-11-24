@@ -21,7 +21,7 @@ resource "aws_route53_record" "cname_record" {
 	records = ["${aws_cloudfront_distribution.s3_distribution.domain_name}"]
 }
 
-resource "aws_route53_record" "cname_record_jenkins" {
+resource "aws_route53_record" "cname_jenkins" {
 	count = "${var.cdn_boolean}"
 
 	depends_on = ["null_resource.jenkins-dcos-installation"]
@@ -29,5 +29,7 @@ resource "aws_route53_record" "cname_record_jenkins" {
 	name = "${var.pre_tag}-jenkins.${var.route53_domain_name}"
 	type = "CNAME"
 	ttl = "60"
-	records = ["${var.dcos_public_url}/service/jenkins-${pre_tag}"]
+
+
+	records = ["${aws_cloudfront_distribution.jenkins_distribution.domain_name}"]
 }
