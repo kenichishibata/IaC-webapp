@@ -32,7 +32,8 @@ resource "null_resource" "setup-backup-nfs" {
   provisioner "remote-exec" {
     inline = [
       "sudo cp /tmp/jenkins-${var.pre_tag}.tar.gz  /var/jenkins_nfs/",
-			"cd /var/jenkins_nfs/ && mkdir -p jenkins-${var.pre_tag} && sudo tar xvf jenkins.tar.gz -C jenkins-${var.pre_tag}"
+			"cd /var/jenkins_nfs/ && mkdir -p jenkins-${var.pre_tag} && sudo tar xvf jenkins.tar.gz -C jenkins-${var.pre_tag}",
+			"sudo rm -rf jenkins-${var.pre_tag}.tar.gz"
     ]
   }
 }
