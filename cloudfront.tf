@@ -78,7 +78,7 @@ resource "aws_cloudfront_distribution" "jenkins_distribution" {
     min_ttl = "0"
     default_ttl = "0" //3600
     max_ttl = "0" //86400
-    target_origin_id = "origin-bucket-${aws_s3_bucket.website_bucket.id}"
+    target_origin_id = "origin-${var.dcos_public_url}/service/jenkins-${pre_tag}"
     viewer_protocol_policy = "allow-all"
   }
   "restrictions" {
