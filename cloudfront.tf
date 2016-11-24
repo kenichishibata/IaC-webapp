@@ -54,16 +54,8 @@ resource "aws_cloudfront_distribution" "jenkins_distribution" {
   count = "${var.cdn_boolean}"
 
   "origin" {
-
     origin_id = "origin-${var.dcos_public_url}/service/jenkins-${pre_tag}"
     domain_name = "${var.dcos_public_url}/service/jenkins-${pre_tag}"
-    custom_origin_config {
-      origin_protocol_policy = "http-only"
-      http_port = "80"
-      https_port = "443"
-      origin_ssl_protocols = ["TLSv1"]
-    }
-
   }
 
   "default_cache_behavior" {
@@ -76,8 +68,8 @@ resource "aws_cloudfront_distribution" "jenkins_distribution" {
       }
     }
     min_ttl = "0"
-    default_ttl = "0" //3600
-    max_ttl = "0" //86400
+    default_ttl = "0"
+    max_ttl = "0" // no caching
     target_origin_id = "origin-${var.dcos_public_url}/service/jenkins-${pre_tag}"
     viewer_protocol_policy = "allow-all"
   }
