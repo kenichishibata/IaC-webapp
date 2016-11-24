@@ -3,7 +3,7 @@ IaC-webapp
 
 ## Usage
 1. Create a manager node using https://github.com/microservices-today/IaC-manager
-1. Create a platform dcos cluster using https://github.com/microservices-today/IaC-platform
+1. Create a platform dcos cluster using https://github.com/microservices-today/IaC-platform with openvpn module. Rest of the modules are optional.
 1. Fork this repository inside the manager node
 1. Create a jenkins service. Use this as a template
 1. Copy the jenkins files and tar it then upload to s3 bucket
