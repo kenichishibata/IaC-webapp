@@ -2,7 +2,7 @@
 data "template_file" "bucket_policy" {
   template = "${file("${path.module}/policy.json")}"
   vars {
-    bucket = "${var.pre_tag}.${var.route53_domain_name}"
+    bucket = "${var.pre_tag}.s3.${var.route53_domain_name}"
   }
 }
 
