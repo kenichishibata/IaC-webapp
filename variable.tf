@@ -58,5 +58,5 @@ variable "agent_ip" {
 
 variable "protocol_policy" {
 	description = "protocol policy for cloudfront cdn"
-	default = "allow-all"
+	default = "redirect-to-https"
 }
