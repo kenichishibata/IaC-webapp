@@ -27,7 +27,7 @@ resource "null_resource" "setup-backup-nfs" {
   }
   provisioner "file" {
     source = "${path.module}/data/jenkins-backup/jenkins-${var.pre_tag}.tar.gz"
-    destination = "/tmp/jenkins${var.pre_tag}.tar.gz"
+    destination = "/tmp/jenkins-${var.pre_tag}.tar.gz"
   }
   provisioner "remote-exec" {
     inline = [
