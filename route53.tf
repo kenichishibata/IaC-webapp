@@ -1,6 +1,6 @@
 resource "aws_route53_record" "s3_record" {
   zone_id = "${var.hosted_zone_id}"
-  name = "${var.pre_tag}.${var.route53_domain_name}"
+  name = "${var.pre_tag}.origin.${var.route53_domain_name}"
   type = "A"
 
   alias {
@@ -13,7 +13,7 @@ resource "aws_route53_record" "s3_record" {
 resource "aws_route53_record" "cname_record" {
 	depends_on = ["aws_cloudfront_distribution.s3_distribution"]
 	zone_id = "${var.hosted_zone_id}"
-	name = "${var.pre_tag}-webapp.${var.route53_domain_name}"
+	name = "${var.pre_tag}.${var.route53_domain_name}"
 	type = "CNAME"
 	count = "${var.cdn_boolean}"
 	ttl = "60"
