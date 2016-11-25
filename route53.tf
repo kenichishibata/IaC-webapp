@@ -10,6 +10,7 @@ resource "aws_route53_record" "s3_record" {
   }
 }
 
+
 resource "aws_route53_record" "https_record" {
 	count = "${var.cdn_boolean}"
 
@@ -24,3 +25,16 @@ resource "aws_route53_record" "https_record" {
 		evaluate_target_health = false
 	}
 }
+
+resource "aws_route53_record" "cname_jenkins" {
+	count = "${var.cdn_boolean}"
+
+	depends_on = ["null_resource.jenkins-dcos-installation"]
+	zone_id = "${var.hosted_zone_id}"
+	name = "${var.pre_tag}-jenkins.${var.route53_domain_name}"
+	type = "CNAME"
+	ttl = "300"
+	records = ["${aws_cloudfront_distribution.jenkins_distribution.domain_name}"]
+
+}
+
