@@ -3,7 +3,7 @@ output "origin_url" {
 }
 
 output "cdn_url" {
-  value = "${aws_route53_record.cname_record.fqdn}"
+  value = "${aws_route53_record.https_record.fqdn}"
 }
 
 output "s3_bucket_name" {
