@@ -23,16 +23,17 @@ resource "null_resource" "setup-backup-nfs" {
     agent = true
   }
   provisioner "local-exec" {
-    command = "aws s3 cp s3://${var.jenkins_restore_s3_path} ${path.module}/data/jenkins-backup/jenkins.tar.gz"
+    command = "aws s3 cp s3://${var.jenkins_restore_s3_path} ${path.module}/data/jenkins-backup/jenkins-${var.pre_tag}.tar.gz"
   }
   provisioner "file" {
-    source = "${path.module}/data/jenkins-backup/jenkins.tar.gz"
-    destination = "/tmp/jenkins.tar.gz"
+    source = "${path.module}/data/jenkins-backup/jenkins-${var.pre_tag}.tar.gz"
+    destination = "/tmp/jenkins-${var.pre_tag}.tar.gz"
   }
   provisioner "remote-exec" {
     inline = [
-      "sudo cp /tmp/jenkins.tar.gz  /var/jenkins_nfs/",
-      "cd /var/jenkins_nfs/ && mkdir -p jenkins-${var.pre_tag} && sudo tar xvf jenkins.tar.gz -C jenkins-${var.pre_tag}"
+			"sudo cp /tmp/jenkins-${var.pre_tag}.tar.gz /var/jenkins_nfs/",
+			"cd /var/jenkins_nfs/ && sudo mkdir -p jenkins-${var.pre_tag} && sudo tar xvf jenkins-${var.pre_tag}.tar.gz -C jenkins-${var.pre_tag}",
+			"sudo rm -rf jenkins-${var.pre_tag}.tar.gz"
     ]
   }
 }

@@ -2,7 +2,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   enabled = true
   default_root_object = "index.html"
   price_class = "PriceClass_200"
-  aliases = ["${var.pre_tag}-cdn-${var.aws_s3_bucket_name}"]
+  aliases = ["${var.pre_tag}.${var.route53_domain_name}"]
   count = "${var.cdn_boolean}"
 
   "origin" {
@@ -31,23 +31,18 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     default_ttl = "300" //3600
     max_ttl = "1200" //86400
     target_origin_id = "origin-bucket-${aws_s3_bucket.website_bucket.id}"
-    # // This redirects any HTTP request to HTTPS. Security first!
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "${var.protocol_policy}"
   }
   "restrictions" {
     "geo_restriction" {
       restriction_type = "none"
     }
   }
-  "viewer_certificate" {
-     acm_certificate_arn = "${var.acm_certificate_arn}"
-     ssl_support_method = "sni-only"
-     minimum_protocol_version = "TLSv1"
-  }
-  "tags" {
-    "Environment" = "${var.env_tag}"
-    "Pre Tag" = "${var.pre_tag}"
-    "Post Tag" = "${var.post_tag}"
-  }
+
+	"viewer_certificate" {
+		 acm_certificate_arn = "${var.acm_certificate_arn}"
+		 ssl_support_method = "sni-only"
+		 minimum_protocol_version = "TLSv1"
+	}
 
 }
