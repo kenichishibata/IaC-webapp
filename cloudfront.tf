@@ -77,7 +77,7 @@ resource "aws_cloudfront_distribution" "jenkins_distribution" {
     min_ttl = "0"
     default_ttl = "0"
     max_ttl = "0" // no caching
-    target_origin_id = "origin-${var.dcos_public_url}/service/jenkins-${pre_tag}"
+    target_origin_id = "origin-${var.dcos_public_url}"
     viewer_protocol_policy = "allow-all"
   }
   "restrictions" {
