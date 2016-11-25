@@ -2,7 +2,6 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   enabled = true
   default_root_object = "index.html"
   price_class = "PriceClass_200"
-  aliases = ["${var.pre_tag}.${var.route53_domain_name}"]
   count = "${var.cdn_boolean}"
 
   "origin" {
