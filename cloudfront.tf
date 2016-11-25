@@ -56,7 +56,7 @@ resource "aws_cloudfront_distribution" "jenkins_distribution" {
   "origin" {
     origin_id = "origin-${var.dcos_public_url}"
     domain_name = "${var.dcos_public_url}"
-		origin_path = "/service/jenkins-${pre_tag}"
+		origin_path = "/service/jenkins-${var.pre_tag}"
 		custom_origin_config {
 			origin_protocol_policy = "http-only"
 			http_port              = 80
