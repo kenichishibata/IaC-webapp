@@ -59,4 +59,7 @@ variable "agent_ip" {
 variable "protocol_policy" {
 	description = "protocol policy for cloudfront cdn"
 	default = "redirect-to-https"
+
+variable "dcos_public_url" {
+	description = "public elb url of the dcos master cluster"
 }

@@ -10,6 +10,7 @@ resource "aws_route53_record" "s3_record" {
   }
 }
 
+
 resource "aws_route53_record" "https_record" {
 	count = "${var.cdn_boolean}"
 
