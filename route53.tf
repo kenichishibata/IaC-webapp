@@ -32,13 +32,10 @@ resource "aws_route53_record" "cname_jenkins" {
 	depends_on = ["null_resource.jenkins-dcos-installation"]
 	zone_id = "${var.hosted_zone_id}"
 	name = "${var.pre_tag}-jenkins.${var.route53_domain_name}"
-	type = "A"
+	type = "CNAME"
+	ttl = "300"
+	records = ["${aws_cloudfront_distribution.jenkins_distribution.domain_name}"]
 
-	alias {
-		name = "${aws_cloudfront_distribution.jenkins_distribution.domain_name}"
-		zone_id = "${aws_cloudfront_distribution.jenkins_distribution.hosted_zone_id}"
-		evaluate_target_health = false
-	}
 }
 
 resource "aws_route53_record" "cname_jenkins" {
