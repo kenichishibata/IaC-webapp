@@ -44,11 +44,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
      ssl_support_method = "sni-only"
      minimum_protocol_version = "TLSv1"
   }
-  "tags" {
-    "Environment" = "${var.env_tag}"
-    "Pre Tag" = "${var.pre_tag}"
-    "Post Tag" = "${var.post_tag}"
-  }
+
 }
 
 resource "aws_cloudfront_distribution" "jenkins_distribution" {
