@@ -33,7 +33,7 @@ resource "null_resource" "setup-backup-nfs" {
     inline = [
 			"sudo cp /tmp/jenkins-${var.pre_tag}.tar.gz /var/jenkins_nfs/",
 			"cd /var/jenkins_nfs/ && sudo mkdir -p jenkins-${var.pre_tag} && sudo tar xvf jenkins-${var.pre_tag}.tar.gz -C jenkins-${var.pre_tag}",
-			"sudo sed -i 's/^.*BUCKET.*$/BUCKET=${aws_route53_record.s3_record.fqdn}'"
+			"sudo sed -i 's/^.*BUCKET=.*$/BUCKET=ken.s3.uniqlo.cloud' /var/jenkins_nfs/jenkins-${var.pre_tag}/jobs/fr-webapp-deploy/config.xml"
 			"sudo rm -rf jenkins-${var.pre_tag}.tar.gz"
     ]
   }
