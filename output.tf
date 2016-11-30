@@ -9,3 +9,7 @@ output "cdn_url" {
 output "s3_bucket_name" {
 	value = "${aws_s3_bucket.website_bucket.id}"
 }
+
+output "jenkins_url" {
+	value = "${aws_route53_record.cname_jenkins.fqdn}"
+}
