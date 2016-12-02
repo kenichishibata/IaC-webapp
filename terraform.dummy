@@ -2,11 +2,12 @@
 Provides a S3 bucket resource.
 */
 /* general configurations */
-region=""     /* aws region value */
-pre_tag=""             /* Pre-tag to be attached to AWS resources for identification */
-post_tag=""          /* Post-tag to be attached to AWS resources for identification */
+region=""                   /* aws region value */
+pre_tag=""                  /* Pre-tag to be attached to AWS resources for identification */
+post_tag=""                 /* Post-tag to be attached to AWS resources for identification */
 env_tag=""                  /* Environment tag */
 dcos_url=""                 /* dcos cluster url */
+dcos_public_url=""          /* don't add protocol */
 aws_s3_bucket_name=""       /* aws s3 bucket name */
 
 /* route53 configurations */
@@ -15,7 +16,7 @@ hosted_zone_id=""           /* hosted zone id for route 53 hosted name */
 acm_certificate_arn=""      /* use only cert available in us-east-1 N. Virginia */
 
 /* cloudfront configurations */
-cdn_boolean=""             /* boolean to check whether cloudfront distribution to be enabled or not */
+cdn_boolean=""              /* boolean to check whether cloudfront distribution to be enabled or not */
 protocol_policy=""		    /* only needed if cdn_boolean=1 possible values: 'redirect-to-https','allow-all','https-only' */
 
 /* restore jenkins configurations */
