@@ -59,8 +59,8 @@ resource "aws_cloudfront_distribution" "jenkins_distribution" {
   count = "${var.cdn_boolean}"
 
   "origin" {
-    origin_id = "origin-${var.dcos_public_url}"
-    domain_name = "${var.dcos_public_url}"
+    origin_id = "origin-${var.dcos_url}"
+    domain_name = "${var.dcos_url}"
 		origin_path = "/service/jenkins-${var.pre_tag}"
 		custom_origin_config {
 			origin_protocol_policy = "http-only"
@@ -82,7 +82,7 @@ resource "aws_cloudfront_distribution" "jenkins_distribution" {
     min_ttl = "0"
     default_ttl = "0"
     max_ttl = "0" // no caching
-    target_origin_id = "origin-${var.dcos_public_url}"
+    target_origin_id = "origin-${var.dcos_url}"
     viewer_protocol_policy = "allow-all"
   }
   "restrictions" {
