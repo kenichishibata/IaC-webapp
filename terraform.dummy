@@ -1,16 +1,24 @@
 /* AWS
 Provides a S3 bucket resource.
 */
-aws_s3_bucket_name=""
-domain=""
-acm_certificate_arn="" /* use only cert available in us-east-1 N. Virginia */
-pre_tag = "pre"        /* Pre-tag to be attached to AWS resources for identification */
-post_tag = "terra"
-env_tag=""             /* Environment tag */
-route53_domain_name="" /* base domain name */
-region="ap-northeast-1"
-dcos_url=""
-dcos_public_url=""  /* don't add protocol */
-cdn_boolean="0"
-hosted_zone_id=""
-protocol_policy=""		/* only needed if cdn_boolean=1 possible values: 'redirect-to-https','allow-all','https-only' */
+/* general configurations */
+region=""     /* aws region value */
+pre_tag=""             /* Pre-tag to be attached to AWS resources for identification */
+post_tag=""          /* Post-tag to be attached to AWS resources for identification */
+env_tag=""                  /* Environment tag */
+dcos_url=""                 /* dcos cluster url */
+aws_s3_bucket_name=""       /* aws s3 bucket name */
+
+/* route53 configurations */
+route53_domain_name=""      /* base domain name */
+hosted_zone_id=""           /* hosted zone id for route 53 hosted name */
+acm_certificate_arn=""      /* use only cert available in us-east-1 N. Virginia */
+
+/* cloudfront configurations */
+cdn_boolean=""             /* boolean to check whether cloudfront distribution to be enabled or not */
+protocol_policy=""		    /* only needed if cdn_boolean=1 possible values: 'redirect-to-https','allow-all','https-only' */
+
+/* restore jenkins configurations */
+restore_jenkins=""          /* boolean value.., if set to 1., restores backedup jenkins */
+jenkins_restore_s3_path=""  /* backedup jenkins path */
+agent_ip=""                 /* temporary solution, provide any agent IP in DCOS cluster, for downloading jenkins */

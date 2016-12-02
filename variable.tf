@@ -5,6 +5,7 @@ variable "aws_s3_bucket_name" {
 #The aws region
 variable "region" {
   description = "Name of the aws s3 bucket region"
+  default="ap-northeast-1"
 }
 #Pre tag to append to all resources
 variable "pre_tag" {
@@ -42,20 +43,19 @@ variable "hosted_zone_id" {
 variable "dcos_url" {
   description = "DCOS URL"
  }
-
+#Boolean to check whether jenkins restore enabled or not
 variable "restore_jenkins" {
   description = "Enable/Disable jenkins backup (0 - Disable, 1 - Enable)"
 }
-
+#Jenkins backed up location
 variable "jenkins_restore_s3_path" {
   description = "S3 path of the folder entire jenkins home folder(Eg: bucket_name/folder_name/jenkins.tar.gz). Ignored if 'restore jenkins' is disabled."
 }
-
+#DCOS cluster agent ip to download the backedup jenkins
 variable "agent_ip" {
-  // Temporary solution
   description = "Agent ip"
 }
-
+#cloudfront distribution configuration
 variable "protocol_policy" {
 	description = "protocol policy for cloudfront cdn"
 	default = "redirect-to-https"
