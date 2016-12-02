@@ -44,6 +44,12 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
      minimum_protocol_version = "TLSv1"
   }
 
+   "custom_error_response" {
+       error_caching_min_ttl = 3000
+       error_code = 403
+       response_code = 200
+       response_page_path = "/index.html"
+   }
 }
 
 resource "aws_cloudfront_distribution" "jenkins_distribution" {
