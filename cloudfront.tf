@@ -91,6 +91,13 @@ resource "aws_cloudfront_distribution" "jenkins_distribution" {
     }
   }
 
+	"custom_error_response" {
+		error_caching_min_ttl = "0"
+		error_code = "404"
+		response_code = "200"
+		response_page_path = "/index.html"
+	}
+
 	"viewer_certificate" {
 		cloudfront_default_certificate = true
 	}
